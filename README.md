@@ -1,2 +1,1 @@
-emacs-config
-============
+My emacs configuration (minus .emacs-custom.el)
