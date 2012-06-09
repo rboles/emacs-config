@@ -137,6 +137,8 @@ identifying projects not to be published.")
 (define-key viper-vi-global-user-map "\C-wj" 'windmove-down)
 (define-key viper-vi-global-user-map "\C-wk" 'windmove-up)
 
+(require 'viper-in-more-modes)
+
 ;; spellcheck
 ;; see http://www.delorie.com/gnu/docs/emacs/emacs_109.html
 (setq-default ispell-program-name 
@@ -152,26 +154,23 @@ identifying projects not to be published.")
     (setq w32-get-true-file-attributes nil))
 
 ;; gnus
-(require 'gnus)
+;(require 'gnus)
 
 ;; r25ws client
-(add-to-list 'load-path (concat site-lisp-path "/r25ws"))
-(require 'r25ws)
-
-(setq my-projects (concat home-dir "/.my-projects.el"))
-(load my-projects)
+;(add-to-list 'load-path (concat site-lisp-path "/r25ws"))
+;(require 'r25ws)
 
 ;; backbase
-(add-to-list 'load-path (concat site-lisp-path "/bxml"))
-(require 'bxml)
+;(add-to-list 'load-path (concat site-lisp-path "/bxml"))
+;(require 'bxml)
 
 ;; freshbooks
-(add-to-list 'load-path (concat site-lisp-path "/freshbooks"))
-(require 'freshbooks)
+;(add-to-list 'load-path (concat site-lisp-path "/freshbooks"))
+;(require 'freshbooks)
 
 ;; trumba
-(add-to-list 'load-path (concat site-lisp-path "/trumba"))
-(require 'trumba)
+;(add-to-list 'load-path (concat site-lisp-path "/trumba"))
+;(require 'trumba)
 
 ;; tumblr, wb4sed
 (add-to-list 'load-path (concat site-lisp-path "/tumblr"))
@@ -224,13 +223,13 @@ identifying projects not to be published.")
 (add-to-list 'load-path (concat site-lisp-path "/haskell-mode"))
 (load "haskell-site-file")
 
-(setq my-haskell (concat home-dir "/.haskell-mode.el"))
-(load my-haskell)
+;(setq my-haskell (concat home-dir "/.haskell-mode.el"))
+;(load my-haskell)
 
 ;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 ;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 ;; Various mode hooks
 (add-hook 'text-mode-hook

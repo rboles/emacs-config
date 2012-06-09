@@ -42,6 +42,12 @@
  ;; To enable stylish on save.
  '(haskell-stylish-on-save t))
 
+;; Don't allow viper to load in Haskell interactive mode
+(when (boundp 'viper-emacs-state-mode-list)
+      (mapc (lambda (mode)
+      (add-to-list 'viper-emacs-state-mode-list mode))
+      '(haskell-ineractive-mode)))
+
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'haskell-hook)
 (add-hook 'haskell-cabal-mode-hook 'haskell-cabal-hook)
