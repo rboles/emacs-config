@@ -158,7 +158,7 @@ identifying projects not to be published.")
 (add-to-list 'load-path (concat site-lisp-path "/r25ws"))
 (require 'r25ws)
 
-(setq my-projects (concat home-dir "/.r25ws.el"))
+(setq my-projects (concat home-dir "/.my-projects.el"))
 (load my-projects)
 
 ;; backbase
@@ -224,10 +224,13 @@ identifying projects not to be published.")
 (add-to-list 'load-path (concat site-lisp-path "/haskell-mode"))
 (load "haskell-site-file")
 
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(setq my-haskell (concat home-dir "/.haskell-mode.el"))
+(load my-haskell)
+
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 ;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 ;; Various mode hooks
 (add-hook 'text-mode-hook
