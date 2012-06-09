@@ -9,7 +9,7 @@
 ;;; configuration variables
 (defvar home-dir
 	(if (eq window-system 'w32)
-			"f:/Cygwin/home/sboles"
+			"c:/Cygwin/home/sboles"
 		"/home/sboles")
 	"Path to home directory")
 
@@ -22,7 +22,7 @@
 (defvar my-planner-home 
   (if (eq window-system 'w32)
       "f:/Dropbox/docs/plans"
-    (concat home-dir "/Dropbox/docs/plans"))
+    (concat home-dir "/docs/plans"))
 	"Path to Planner files. No trailing slash.")
 
 (defvar my-planner-publish-path
@@ -111,8 +111,8 @@ identifying projects not to be published.")
 (color-theme-billw)
 (set-default-font
  (if (eq window-system 'w32)
-		 "Bitstream Vera Sans mono-11"
-   "Bitstream Vera Sans Mono 12"))
+		 "Bitstream Vera Sans mono-10"
+   "Bitstream Vera Sans Mono 10"))
 
 ;; "y or n" instead of "yes or no"
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -122,7 +122,7 @@ identifying projects not to be published.")
 (global-smart-tab-mode 1)
 
 ;; Windows copy/paste
-(cua-mode)
+(setq cua-mode 1)
 
 ;; viper & vimpulse
 (add-to-list 'load-path (concat site-lisp-path "/vimpulse"))
@@ -197,10 +197,10 @@ identifying projects not to be published.")
 (setq twittering-cert-file
       (concat site-lisp-path "/twittering-mode-1.0.0/win-curl/equifax.cer"))
 
-;; Visual Basic mode
-(autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
-(add-to-list 'auto-mode-alist '("\\.vb\\'" . visual-basic-mode))
-(add-to-list 'auto-mode-alist '("\\.vbs\\'" . visual-basic-mode))
+;; Magit
+;; See: http://daemianmack.com/magit-cheatsheet.html
+(add-to-list 'load-path (concat site-lisp-path "/magit"))
+(require 'magit)
 
 ;; Maven
 (add-to-list 'load-path (concat site-lisp-path "/maven"))
@@ -219,6 +219,15 @@ identifying projects not to be published.")
 (add-hook 'scala-mode-hook
           '(lambda ()
              (define-key scala-mode-map '[f6] 'mvn-scala)))
+
+;; Haskell mode
+(add-to-list 'load-path (concat site-lisp-path "/haskell-mode"))
+(load "haskell-site-file")
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 ;; Various mode hooks
 (add-hook 'text-mode-hook
