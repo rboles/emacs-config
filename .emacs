@@ -139,6 +139,12 @@ identifying projects not to be published.")
 
 (require 'viper-in-more-modes)
 
+;; Don't allow viper to load in some modes
+(when (boundp 'viper-emacs-state-mode-list)
+      (mapc (lambda (mode)
+      (add-to-list 'viper-emacs-state-mode-list mode))
+      '(haskell-interactive-mode magit-key-mode)))
+
 ;; spellcheck
 ;; see http://www.delorie.com/gnu/docs/emacs/emacs_109.html
 (setq-default ispell-program-name 
@@ -223,8 +229,10 @@ identifying projects not to be published.")
 (add-to-list 'load-path (concat site-lisp-path "/haskell-mode"))
 (load "haskell-site-file")
 
-;(setq my-haskell (concat home-dir "/.haskell-mode.el"))
-;(load my-haskell)
+(setq my-haskell (concat home-dir "/.haskell-mode.el"))
+(load my-haskell)
+
+;(add-hook 'haskell-mode-hook '(lambda () (viper-mode t)))
 
 ;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 ;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)

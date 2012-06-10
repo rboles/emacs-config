@@ -42,12 +42,6 @@
  ;; To enable stylish on save.
  '(haskell-stylish-on-save t))
 
-;; Don't allow viper to load in Haskell interactive mode
-(when (boundp 'viper-emacs-state-mode-list)
-      (mapc (lambda (mode)
-      (add-to-list 'viper-emacs-state-mode-list mode))
-      '(haskell-ineractive-mode)))
-
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'haskell-hook)
 (add-hook 'haskell-cabal-mode-hook 'haskell-cabal-hook)
@@ -65,8 +59,7 @@
 
   ;; Switch to the REPL.
   (define-key haskell-mode-map [?\C-c ?\C-z] 'haskell-interactive-switch)
-  ;; “Bring” the REPL, hiding all other windows apart from the source
-  ;; and the REPL.
+  ;; “Bring” the REPL, hiding other windows apart from the source and REPL
   (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
 
   ;; Build the Cabal project.
