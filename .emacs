@@ -140,8 +140,12 @@
 
 ;; Scala mode
 ;; See also, http://scala.sygneca.com/tools/emacs
+;; and https://github.com/aemoncannon/ensime
 (add-to-list 'load-path (concat site-lisp-path "/scala"))
 (load "scala-mode-auto.el")
+
+(add-to-list'load-path (concat site-lisp-path "/ensime/elisp"))
+(require 'ensime)
 
 (defun scala-turn-off-indent-tabs-mode ()
   (setq indent-tabs-mode nil))
@@ -151,6 +155,7 @@
 (add-hook 'scala-mode-hook
           '(lambda ()
              (define-key scala-mode-map '[f6] 'mvn-scala)))
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; Haskell mode
 (add-to-list 'load-path (concat site-lisp-path "/haskell-mode"))
