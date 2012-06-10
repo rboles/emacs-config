@@ -50,10 +50,18 @@
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-billw)
+
+;; default font
 (set-default-font
  (if (eq window-system 'w32)
 		 "Bitstream Vera Sans mono-10"
    "Bitstream Vera Sans Mono 10"))
+
+;; defaults for all frames
+(add-to-list 'default-frame-alist
+             '(font . "Bitstream Vera Sans Mono 10"))
+(add-to-list 'default-frame-alist
+             '(vertical-scroll-bars nil))
 
 ;; "y or n" instead of "yes or no"
 (fset 'yes-or-no-p 'y-or-n-p)
