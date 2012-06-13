@@ -141,7 +141,7 @@
 ;; Scala mode
 ;; See also, http://scala.sygneca.com/tools/emacs
 ;; and https://github.com/aemoncannon/ensime
-(add-to-list 'load-path (concat site-lisp-path "/scala"))
+(add-to-list 'load-path (concat site-lisp-path "/scala-mode"))
 (load "scala-mode-auto.el")
 
 (add-to-list'load-path (concat site-lisp-path "/ensime/elisp"))
