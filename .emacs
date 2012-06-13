@@ -121,13 +121,10 @@
 (load (concat home-dir "/.my-projects.el"))
 
 ;; twittering-mode
-(add-to-list 'load-path (concat site-lisp-path "/twittering-mode-1.0.0"))
+(add-to-list 'load-path (concat site-lisp-path "/twittering-mode"))
 (require 'twittering-mode)
 (setq twittering-timer-interval 300)
-(setq twittering-curl-program
-      (concat site-lisp-path "/twittering-mode-1.0.0/win-curl/curl.exe"))
-(setq twittering-cert-file
-      (concat site-lisp-path "/twittering-mode-1.0.0/win-curl/equifax.cer"))
+(setq twittering-use-master-password t)
 
 ;; Magit
 ;; See: http://daemianmack.com/magit-cheatsheet.html
