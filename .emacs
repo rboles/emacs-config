@@ -60,8 +60,8 @@
 ;; defaults for all frames
 (add-to-list 'default-frame-alist
              '(font . "Bitstream Vera Sans Mono 10"))
-(add-to-list 'default-frame-alist
-             '(vertical-scroll-bars nil))
+;(add-to-list 'default-frame-alist
+;             '(vertical-scroll-bars nil))
 
 ;; "y or n" instead of "yes or no"
 (fset 'yes-or-no-p 'y-or-n-p)
