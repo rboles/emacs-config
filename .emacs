@@ -91,7 +91,7 @@
 (when (boundp 'viper-emacs-state-mode-list)
       (mapc (lambda (mode)
       (add-to-list 'viper-emacs-state-mode-list mode))
-      '(haskell-interactive-mode magit-key-mode)))
+      '(haskell-interactive-mode ensime-inferior-scala magit-key-mode)))
 
 ;; spellcheck
 ;; see http://www.delorie.com/gnu/docs/emacs/emacs_109.html
