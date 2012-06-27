@@ -9,19 +9,7 @@
 ;;; configuration variables
 (defvar home-dir "/Users/sboles")
 
-;; (defvar home-dir
-;; 	(if (eq window-system 'w32)
-;; 			"c:/Cygwin/home/sboles"
-;; 		"/home/sboles")
-;; 	"Path to home directory")
-
 (defvar site-lisp-path "/usr/share/emacs/site-lisp")
-
-;; (defvar site-lisp-path
-;; 	(if (eq window-system 'w32)
-;; 			"c:/emacs/site-lisp"
-;; 		"/usr/share/emacs/site-lisp")
-;; 	"Path to site-lisp directory. No trailing slash.")
 
 ;; general emacs
 (add-to-list 'load-path site-lisp-path)
@@ -56,27 +44,12 @@
 (color-theme-initialize)
 (color-theme-billw)
 
-;; default font
-;; (set-default-font
-;;  (if (eq window-system 'w32)
-;; 		 "Bitstream Vera Sans mono-10"
-;;    "Bitstream Vera Sans Mono 10"))
-
-;; defaults for all frames
-;; (add-to-list 'default-frame-alist
-;;              '(font . "Bitstream Vera Sans Mono 10"))
-;(add-to-list 'default-frame-alist
-;             '(vertical-scroll-bars nil))
-
 ;; "y or n" instead of "yes or no"
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; smart-tab
 (require 'smart-tab)
 (global-smart-tab-mode 1)
-
-;; Windows copy/paste
-;; (setq cua-mode 1)
 
 ;; viper & vimpulse
 (add-to-list 'load-path (concat site-lisp-path "/vimpulse"))
