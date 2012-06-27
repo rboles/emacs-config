@@ -7,20 +7,25 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; configuration variables
-(defvar home-dir
-	(if (eq window-system 'w32)
-			"c:/Cygwin/home/sboles"
-		"/home/sboles")
-	"Path to home directory")
+(defvar home-dir "/Users/sboles")
 
-(defvar site-lisp-path
-	(if (eq window-system 'w32)
-			"c:/emacs/site-lisp"
-		"/usr/share/emacs/site-lisp")
-	"Path to site-lisp directory. No trailing slash.")
+;; (defvar home-dir
+;; 	(if (eq window-system 'w32)
+;; 			"c:/Cygwin/home/sboles"
+;; 		"/home/sboles")
+;; 	"Path to home directory")
+
+(defvar site-lisp-path "/usr/share/emacs/site-lisp")
+
+;; (defvar site-lisp-path
+;; 	(if (eq window-system 'w32)
+;; 			"c:/emacs/site-lisp"
+;; 		"/usr/share/emacs/site-lisp")
+;; 	"Path to site-lisp directory. No trailing slash.")
 
 ;; general emacs
 (add-to-list 'load-path site-lisp-path)
+(add-to-list 'exec-path "/usr/local/bin")
 (setq inhibit-splash-screen t)
 (setq make-backup-files nil)
 (toggle-scroll-bar -1)
@@ -52,14 +57,14 @@
 (color-theme-billw)
 
 ;; default font
-(set-default-font
- (if (eq window-system 'w32)
-		 "Bitstream Vera Sans mono-10"
-   "Bitstream Vera Sans Mono 10"))
+;; (set-default-font
+;;  (if (eq window-system 'w32)
+;; 		 "Bitstream Vera Sans mono-10"
+;;    "Bitstream Vera Sans Mono 10"))
 
 ;; defaults for all frames
-(add-to-list 'default-frame-alist
-             '(font . "Bitstream Vera Sans Mono 10"))
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Bitstream Vera Sans Mono 10"))
 ;(add-to-list 'default-frame-alist
 ;             '(vertical-scroll-bars nil))
 
@@ -71,7 +76,7 @@
 (global-smart-tab-mode 1)
 
 ;; Windows copy/paste
-(setq cua-mode 1)
+;; (setq cua-mode 1)
 
 ;; viper & vimpulse
 (add-to-list 'load-path (concat site-lisp-path "/vimpulse"))
