@@ -20,6 +20,7 @@
 (tool-bar-mode 0)
 (transient-mark-mode t)
 (column-number-mode t)
+(setq ring-bell-function 'ignore)
 
 ;; confirm exit
 (setq confirm-kill-emacs 'yes-or-no-p)
