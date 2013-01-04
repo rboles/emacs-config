@@ -45,6 +45,14 @@
 (color-theme-initialize)
 (color-theme-billw)
 
+;; default font
+(set-default-font
+ (if (eq window-system 'w32)
+     "Bitstream Vera Sans mono-10"
+   (if (eq window-system 'ns)
+       "Monaco 14"
+     "Bitstream Vera Sana Mono 10")))
+
 ;; "y or n" instead of "yes or no"
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -71,6 +79,12 @@
       (mapc (lambda (mode)
       (add-to-list 'viper-emacs-state-mode-list mode))
       '(haskell-interactive-mode ensime-inferior-scala magit-key-mode)))
+
+;; Pakcage
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;; spellcheck
 ;; see http://www.delorie.com/gnu/docs/emacs/emacs_109.html
@@ -114,11 +128,14 @@
 (add-to-list 'load-path (concat site-lisp-path "/maven"))
 (load "mvn.el")
 
+;; scala-mode2
+;(require 'scala-mode2)
+
 ;; Scala mode
 ;; See also, http://scala.sygneca.com/tools/emacs
 ;; and https://github.com/aemoncannon/ensime
-(add-to-list 'load-path (concat site-lisp-path "/scala-mode"))
-(load "scala-mode-auto.el")
+;(add-to-list 'load-path (concat site-lisp-path "/scala-mode"))
+;(load "scala-mode-auto.el")
 
 (add-to-list'load-path (concat site-lisp-path "/ensime/elisp"))
 (require 'ensime)
