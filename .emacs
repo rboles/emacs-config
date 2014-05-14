@@ -7,26 +7,21 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; configuration variables
-(defvar home-dir
-	(if (eq window-system 'w32)
-			"c:/Cygwin/home/sboles"
-		"/home/sboles")
-	"Path to home directory")
+(defvar home-dir "/home/likewise-open/JIVELAND/shawn.boles")
 
-(defvar site-lisp-path
-	(if (eq window-system 'w32)
-			"c:/emacs/site-lisp"
-		"/usr/share/emacs/site-lisp")
-	"Path to site-lisp directory. No trailing slash.")
+(defvar site-lisp-path "/usr/local/share/emacs/site-lisp")
 
 ;; general emacs
 (add-to-list 'load-path site-lisp-path)
+(add-to-list 'exec-path "/usr/bin")
 (setq inhibit-splash-screen t)
 (setq make-backup-files nil)
 (toggle-scroll-bar -1)
+(scroll-bar-mode -1)
 (tool-bar-mode 0)
 (transient-mark-mode t)
 (column-number-mode t)
+(setq ring-bell-function 'ignore)
 
 ;; confirm exit
 (setq confirm-kill-emacs 'yes-or-no-p)
@@ -54,14 +49,24 @@
 ;; default font
 (set-default-font
  (if (eq window-system 'w32)
-		 "Bitstream Vera Sans mono-10"
-   "Bitstream Vera Sans Mono 10"))
+     "Bitstream Vera Sans mono-10"
+   (if (eq window-system 'ns)
+       "Monaco 14"
+     "DejaVu Sans Mono 12")))
 
-;; defaults for all frames
-(add-to-list 'default-frame-alist
-             '(font . "Bitstream Vera Sans Mono 10"))
-;(add-to-list 'default-frame-alist
-;             '(vertical-scroll-bars nil))
+(set-face-attribute 'default t :font
+                    (if (eq window-system 'w32)
+                        "Bitstream Vera Sans mono-10"
+                      (if (eq window-system 'ns)
+                          "Monaco 14"
+                        "DejaVu Sans Mono 12")))
+
+(set-face-attribute 'default nil :font
+                    (if (eq window-system 'w32)
+                        "Bitstream Vera Sans mono-10"
+                      (if (eq window-system 'ns)
+                          "Monaco 14"
+                        "DejaVu Sans Mono 12")))
 
 ;; "y or n" instead of "yes or no"
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -70,8 +75,8 @@
 (require 'smart-tab)
 (global-smart-tab-mode 1)
 
-;; Windows copy/paste
-(setq cua-mode 1)
+;; revbufs
+(require 'revbufs)
 
 ;; viper & vimpulse
 (add-to-list 'load-path (concat site-lisp-path "/vimpulse"))
@@ -92,6 +97,15 @@
       (mapc (lambda (mode)
       (add-to-list 'viper-emacs-state-mode-list mode))
       '(haskell-interactive-mode ensime-inferior-scala magit-key-mode)))
+
+;; Package
+;(require 'package)
+;(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+;                         ("marmalade" . "http://marmalade-repo.org/packages/")
+;                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+;(setq package-load-list '(all))
+;(setq package-enable-at-startup nil)
+;(package-initialize)
 
 ;; spellcheck
 ;; see http://www.delorie.com/gnu/docs/emacs/emacs_109.html
@@ -121,7 +135,7 @@
 (load (concat home-dir "/.my-projects.el"))
 
 ;; twittering-mode
-(add-to-list 'load-path (concat site-lisp-path "/twittering-mode"))
+(add-to-list 'load-path (concat site-lisp-path "/twittering-mode-3.0.0"))
 (require 'twittering-mode)
 (setq twittering-timer-interval 300)
 (setq twittering-use-master-password t)
@@ -135,14 +149,21 @@
 (add-to-list 'load-path (concat site-lisp-path "/maven"))
 (load "mvn.el")
 
-;; Scala mode
+;; scala-mode2
+;(require 'scala-mode2)
+
+;; Plain old Scala mode - comment out to use scala-mode2
 ;; See also, http://scala.sygneca.com/tools/emacs
 ;; and https://github.com/aemoncannon/ensime
 (add-to-list 'load-path (concat site-lisp-path "/scala-mode"))
 (load "scala-mode-auto.el")
+(require 'scala-mode)
+(add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
+(add-to-list 'auto-mode-alist '("\\.sbt\\'" . scala-mode))
 
 (add-to-list'load-path (concat site-lisp-path "/ensime/elisp"))
 (require 'ensime)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 (defun scala-turn-off-indent-tabs-mode ()
   (setq indent-tabs-mode nil))
@@ -152,13 +173,17 @@
 (add-hook 'scala-mode-hook
           '(lambda ()
              (define-key scala-mode-map '[f6] 'mvn-scala)))
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 ;; Haskell mode
 (add-to-list 'load-path (concat site-lisp-path "/haskell-mode"))
 (load "haskell-site-file")
 
 (load (concat home-dir "/.haskell-mode.el"))
+
+;; Mustache mode
+(add-to-list 'load-path (concat site-lisp-path "/mustache-mode"))
+(require 'mustache-mode)
+(add-to-list 'auto-mode-alist '("\\.hbs\\'" . mustache-mode))
 
 ;; planner
 (load (concat home-dir "/.planner.el"))
