@@ -6,17 +6,14 @@
 ;; sboles
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar my-planner-home 
-  (if (eq window-system 'w32)
-      "f:/Dropbox/docs/plans"
-    (concat home-dir "/docs/plans"))
-	"Path to Planner files. No trailing slash.")
+;; location of planner files
+(defvar my-planner-home (concat home-dir "/Documents/Plans")
+  "Location of planner files")
 
+;; destination for planner HTML files
 (defvar my-planner-publish-path
-	(if (eq window-system 'w32)
-			"y:/plans"
-		(concat home-dir "/public-html/plans"))
-	"Path to publish Planner files")
+  (concat home-dir "/Html/Plans")
+  "Location of planner generated HTML files")
 
 (defvar my-planner-project-name	"WikiPlanner"
 	"Identifies a Planner project.
@@ -24,13 +21,7 @@
 
 (defvar my-planner-trunk-rule-list
 	(list "TaskPool"
-        "R25WS"
-        "25LiveInvoicing"
-				"25LivePublisher"
-				"25LiveRegistration"
-				"R25Import"
-				"RoomWizard"
-				"Emacs")
+        "serv")
 	"Visual grouping of Planner projects on plan pages.")
 
 (defvar my-planner-project-conf
@@ -59,10 +50,9 @@ You should not have to worry about changing this variable.")
 used for planner pages published as HTML")
 
 (defvar my-planner-private-projects
-	(list "TaskPool" "Test" "JobSearch")
+	(list "TaskPool" "Test")
 	"List of project names or name prefixes
 identifying projects not to be published.")
-
 
 (add-to-list 'load-path (concat site-lisp-path "/muse/lisp"))
 (add-to-list 'load-path (concat site-lisp-path "/planner"))
@@ -79,6 +69,9 @@ identifying projects not to be published.")
 
 ;; defines the muse project
 (setq muse-project-alist my-muse-project-alist)
+
+;; do not try to show images in muse mode
+(setq muse-colors-inline-images nil)
 
 ;; don't complain about wiki-like words that dont have pages
 (setq muse-wiki-allow-nonexistent-wikiword t)
@@ -133,8 +126,8 @@ Copies updated files to the publish directory. See my-planner-publish-gfx"
 	"Tests a project name against a private project list.
 The test is a substring match, starting at zero.
 
-For example, the project name ``Foo-BarBaz'' matches the
-private list item ``Foo-''.
+For example, the private list item matches the project
+name ``Foo-BarBaz''.
 
 Returns t if project name has a private list match; nil if not"
 	(setq found nil)
